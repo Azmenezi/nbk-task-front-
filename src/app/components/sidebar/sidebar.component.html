@@ -1,0 +1,49 @@
+<div class="h-screen bg-gray-800 text-white flex flex-col justify-between">
+  <div>
+    <div class="p-4 text-2xl font-bold">back-office</div>
+    <nav>
+      <ul *ngIf="authService.isLoggedIn()">
+        <li class="p-4 w-full">
+          <a
+            routerLink="/customers"
+            routerLinkActive="bg-gray-600 "
+            class="hover:bg-gray-500 py-2 px-4 rounded w-full"
+            >Customers</a
+          >
+        </li>
+        <li class="p-4">
+          <a
+            routerLink="/customer-add"
+            routerLinkActive="bg-gray-600 "
+            class="hover:bg-gray-500 py-2 px-4 rounded"
+            >Add Customer</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div>
+    <nav>
+      <ul *ngIf="!authService.isLoggedIn()">
+        <li class="p-4">
+          <a
+            routerLink="/login"
+            routerLinkActive="bg-gray-600 "
+            class="hover:bg-gray-500 py-2 px-4 rounded"
+            >Login</a
+          >
+        </li>
+      </ul>
+      <ul *ngIf="authService.isLoggedIn()">
+        <li class="p-4">
+          <button
+            (click)="logout()"
+            class="hover:bg-gray-500 py-2 px-4 rounded"
+          >
+            Logout
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
