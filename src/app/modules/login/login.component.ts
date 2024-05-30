@@ -1,22 +1,33 @@
 import { Component } from '@angular/core';
-import { ButtonComponent } from '../../components/button/button.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [ButtonComponent, HttpClientModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  styleUrls: ['./login.component.css'],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
 })
 export class LoginComponent {
-  constructor(private http: HttpClient) {}
+  email: string = '';
+  password: string = '';
 
-  ngOnInit() {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  onClick() {
-    this.http.get('http://localhost:3000/api').subscribe((data) => {
-      console.log(data);
-    });
+  onSubmit(): void {
+    this.authService
+      .login({ email: this.email, password: this.password })
+      .subscribe(
+        (response) => {
+          localStorage.setItem('token', response.token);
+          this.router.navigate(['/customers']);
+        },
+        (error) => {
+          console.error('Error logging in', error);
+        }
+      );
   }
 }

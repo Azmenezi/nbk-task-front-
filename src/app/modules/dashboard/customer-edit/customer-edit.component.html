@@ -1,0 +1,75 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="w-full max-w-md">
+    <form
+      class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="number">
+          Customer Number
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="number"
+          type="text"
+          [(ngModel)]="customer.number"
+          name="number"
+          required
+          readonly
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+          Customer Name
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="name"
+          type="text"
+          [(ngModel)]="customer.name"
+          name="name"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label
+          class="block text-gray-700 text-sm font-bold mb-2"
+          for="dateOfBirth"
+        >
+          Date of Birth
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="dateOfBirth"
+          type="date"
+          [(ngModel)]="customer.dateOfBirth"
+          name="dateOfBirth"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="gender">
+          Gender
+        </label>
+        <select
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="gender"
+          [(ngModel)]="customer.gender"
+          name="gender"
+          required
+        >
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <div class="flex items-center justify-between">
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+        >
+          Update Customer
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
