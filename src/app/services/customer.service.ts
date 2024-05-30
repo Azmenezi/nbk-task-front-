@@ -11,8 +11,8 @@ export class CustomerService {
 
   constructor(private http: HttpClient) {}
 
-  getCustomers(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+  getCustomers(page: number, limit: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}?page=${page}&limit=${limit}`);
   }
 
   getCustomer(id: number): Observable<any> {

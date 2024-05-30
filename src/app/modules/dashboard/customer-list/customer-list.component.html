@@ -11,7 +11,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let customer of customers" class="text-center border-b">
+        <tr
+          *ngFor="let customer of customers"
+          class="text-center border-b max-h-screen overflow-y-auto"
+        >
           <td class="py-2">{{ customer.number }}</td>
           <td class="py-2">{{ customer.name }}</td>
           <td class="py-2">{{ customer.dateOfBirth | date }}</td>
@@ -33,6 +36,43 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="mt-4 flex justify-between items-center">
+    <div>
+      <label for="limit" class="mr-2">Customers per page:</label>
+      <select
+        id="limit"
+        [(ngModel)]="limit"
+        (change)="onLimitChange(limit)"
+        class="px-2 py-1 rounded-sm"
+      >
+        <option *ngFor="let size of [10, 20, 50, 100]" [value]="size">
+          {{ size }}
+        </option>
+      </select>
+    </div>
+
+    <div>Page {{ page }} of {{ totalPages() }}</div>
+
+    <div class="flex gap-2">
+      <button
+        class="bg-gray-300 px-4 py-2 rounded disabled:opacity-50"
+        [class.disabled]="page === 1"
+        (click)="onPageChange(page - 1)"
+        [disabled]="page === 1"
+      >
+        Previous
+      </button>
+      <button
+        class="bg-gray-300 px-4 py-2 rounded disabled:opacity-50"
+        [class.disabled]="page === totalPages()"
+        (click)="onPageChange(page + 1)"
+        [disabled]="page === totalPages()"
+      >
+        Next
+      </button>
+    </div>
   </div>
 </div>
 
